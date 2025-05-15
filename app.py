@@ -1,6 +1,8 @@
 #für Render Template müssen noch alle notwendigen Templates erstellt werden
 from flask import Flask, render_template
+
 from flask_bootstrap import Bootstrap5
+
 
 app = Flask(__name__)
 

@@ -1,8 +1,25 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
+from flask_bootstrap import Bootstrap5
+from db import db, create_tables  
+from models import * #modelle von Kaan
+from datetime import date
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey' #gehört zum Code der KI
+
+
+app.config.from_mapping(
+    SECRET_KEY='secret_key_just_for_dev_environment',
+    SQLALCHEMY_DATABASE_URI='sqlite:///campusconnect_berlin.sqlite',
+    SQLALCHEMY_TRACK_MODIFICATIONS=False,
+    BOOTSTRAP_BOOTSWATCH_THEME = 'pulse'
+)
+
+db.init_app(app)
+create_tables(app)
+
+
+
 
 # Information foür jeden ptype
 information = {
@@ -136,12 +153,6 @@ information = {
     }
 }
 
-
-def get_db_connection():
-    conn = sqlite3.connect('database.db')
-    conn.row_factory = sqlite3.Row
-    return conn
-
 @app.route('/')
 def home():
     return render_template('create_user.html')
@@ -150,13 +161,10 @@ def home():
 @app.route('/create_user', methods=['POST'])
 def create_user():
     username = request.form['username']
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("INSERT INTO user (username) VALUES (?)", (username,))
-    user_id = cursor.lastrowid
-    conn.commit()
-    conn.close()
-    session['user_id'] = user_id 
+    new_user = User(name=username, email=f"{username}@example.com", password="temp123", created_at=date.today())
+    db.session.add(new_user)
+    db.session.commit()
+    session['user_id'] = new_user.user_id
     return redirect(url_for('quiz'))
 
 @app.route('/quiz')
@@ -178,20 +186,22 @@ def results():
     jp = 'J' if vector_jp >= 0 else 'P'
     mbti_type = ei + sn + tf + jp
 
-    personality_info = information.get(mbti_type, None)
-    conn = get_db_connection()
-    cursor = conn.cursor()
+    personality_info = information.get(mbti_type)
     user_id = session.get('user_id')
 
     #wenn user existiert
     if user_id:  
-        cursor.execute("""
-            INSERT INTO personality_results (user_id, vector_ei, vector_sn, vector_tf, vector_jp, mbti_type)
-            VALUES (?, ?, ?, ?, ?, ?)
-        """, (user_id, vector_ei, vector_sn, vector_tf, vector_jp, mbti_type))
-        conn.commit()
-
-    conn.close()
+        result = PersonalityResult(
+            user_id=user_id,
+            vec_ei=vector_ei,
+            vec_sn=vector_sn,
+            vec_tf=vector_tf,
+            vec_jp=vector_jp,
+            mbti_type=mbti_type,
+            completed_at=date.today()
+        )
+        db.session.add(result)
+        db.session.commit()
 
     return render_template('results.html', mbti_type=mbti_type, information=personality_info)
 
