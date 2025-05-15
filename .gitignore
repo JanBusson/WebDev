@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 #ignores venv folder
 venv/
 
 #ignores pycache
 __pycache__/
+=======
+venv/
+>>>>>>> a9fa13d (Add .gitignore for  /venv folder)
