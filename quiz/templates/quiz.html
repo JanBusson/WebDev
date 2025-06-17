@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Personality Quiz</h1>
+<form method="POST" action="/results">
+
+
+<div class="question">
+  <p>1. In a social gathering, do you feel more energized by interacting with a large group of people or by having one-on-one conversations?</p>
+  <div class="scale">
+    <span class="label-left">Large group interactions</span>
+    <div class="scale-options">
+      <label><input type="radio" name="ei_q1" value="3" required><span></span></label>
+      <label><input type="radio" name="ei_q1" value="2"><span></span></label>
+      <label><input type="radio" name="ei_q1" value="1"><span></span></label>
+      <label><input type="radio" name="ei_q1" value="0"><span></span></label>
+      <label><input type="radio" name="ei_q1" value="-1"><span></span></label>
+      <label><input type="radio" name="ei_q1" value="-2"><span></span></label>
+      <label><input type="radio" name="ei_q1" value="-3"><span></span></label>
+    </div>
+    <span class="label-right">One-on-one conversations</span>
+  </div>
+</div>
+
+<div class="question">
+  <p>2. Do you prefer to be the center of attention or to observe from the sidelines?</p>
+  <div class="scale">
+    <span class="label-left">Center of attention</span>
+    <div class="scale-options">
+      <label><input type="radio" name="ei_q2" value="3" required><span></span></label>
+      <label><input type="radio" name="ei_q2" value="2"><span></span></label>
+      <label><input type="radio" name="ei_q2" value="1"><span></span></label>
+      <label><input type="radio" name="ei_q2" value="0"><span></span></label>
+      <label><input type="radio" name="ei_q2" value="-1"><span></span></label>
+      <label><input type="radio" name="ei_q2" value="-2"><span></span></label>
+      <label><input type="radio" name="ei_q2" value="-3"><span></span></label>
+    </div>
+    <span class="label-right">Observe from sidelines</span>
+  </div>
+</div>
+
+<div class="question">
+  <p>3. When meeting new people, do you usually start conversations or wait for others?</p>
+  <div class="scale">
+    <span class="label-left">Start conversations</span>
+    <div class="scale-options">
+      <label><input type="radio" name="ei_q3" value="3" required><span></span></label>
+      <label><input type="radio" name="ei_q3" value="2"><span></span></label>
+      <label><input type="radio" name="ei_q3" value="1"><span></span></label>
+      <label><input type="radio" name="ei_q3" value="0"><span></span></label>
+      <label><input type="radio" name="ei_q3" value="-1"><span></span></label>
+      <label><input type="radio" name="ei_q3" value="-2"><span></span></label>
+      <label><input type="radio" name="ei_q3" value="-3"><span></span></label>
+    </div>
+    <span class="label-right">Wait for others</span>
+  </div>
+</div>
+
+<!-- SN Dimension -->
+<div class="question">
+  <p>4. Do you focus more on facts and details or on ideas and possibilities?</p>
+  <div class="scale">
+    <span class="label-left">Facts & details</span>
+    <div class="scale-options">
+      <label><input type="radio" name="sn_q1" value="3" required><span></span></label>
+      <label><input type="radio" name="sn_q1" value="2"><span></span></label>
+      <label><input type="radio" name="sn_q1" value="1"><span></span></label>
+      <label><input type="radio" name="sn_q1" value="0"><span></span></label>
+      <label><input type="radio" name="sn_q1" value="-1"><span></span></label>
+      <label><input type="radio" name="sn_q1" value="-2"><span></span></label>
+      <label><input type="radio" name="sn_q1" value="-3"><span></span></label>
+    </div>
+    <span class="label-right">Ideas & possibilities</span>
+  </div>
+</div>
+
+<div class="question">
+  <p>5. Do you prefer practical solutions or imaginative approaches?</p>
+  <div class="scale">
+    <span class="label-left">Practical solutions</span>
+    <div class="scale-options">
+      <label><input type="radio" name="sn_q2" value="3" required><span></span></label>
+      <label><input type="radio" name="sn_q2" value="2"><span></span></label>
+      <label><input type="radio" name="sn_q2" value="1"><span></span></label>
+      <label><input type="radio" name="sn_q2" value="0"><span></span></label>
+      <label><input type="radio" name="sn_q2" value="-1"><span></span></label>
+      <label><input type="radio" name="sn_q2" value="-2"><span></span></label>
+      <label><input type="radio" name="sn_q2" value="-3"><span></span></label>
+    </div>
+    <span class="label-right">Imaginative approaches</span>
+  </div>
+</div>
+
+<div class="question">
+  <p>6. Do you trust experience more or intuition?</p>
+  <div class="scale">
+    <span class="label-left">Experience</span>
+    <div class="scale-options">
+      <label><input type="radio" name="sn_q3" value="3" required><span></span></label>
+      <label><input type="radio" name="sn_q3" value="2"><span></span></label>
+      <label><input type="radio" name="sn_q3" value="1"><span></span></label>
+      <label><input type="radio" name="sn_q3" value="0"><span></span></label>
+      <label><input type="radio" name="sn_q3" value="-1"><span></span></label>
+      <label><input type="radio" name="sn_q3" value="-2"><span></span></label>
+      <label><input type="radio" name="sn_q3" value="-3"><span></span></label>
+    </div>
+    <span class="label-right">Intuition</span>
+  </div>
+</div>
+
+<!-- TF Dimension -->
+<div class="question">
+  <p>7. Do you make decisions based on logic or on personal values?</p>
+  <div class="scale">
+    <span class="label-left">Logic</span>
+    <div class="scale-options">
+      <label><input type="radio" name="tf_q1" value="3" required><span></span></label>
+      <label><input type="radio" name="tf_q1" value="2"><span></span></label>
+      <label><input type="radio" name="tf_q1" value="1"><span></span></label>
+      <label><input type="radio" name="tf_q1" value="0"><span></span></label>
+      <label><input type="radio" name="tf_q1" value="-1"><span></span></label>
+      <label><input type="radio" name="tf_q1" value="-2"><span></span></label>
+      <label><input type="radio" name="tf_q1" value="-3"><span></span></label>
+    </div>
+    <span class="label-right">Personal values</span>
+  </div>
+</div>
+
+<div class="question">
+  <p>8. Do you focus more on fairness or compassion?</p>
+  <div class="scale">
+    <span class="label-left">Fairness</span>
+    <div class="scale-options">
+      <label><input type="radio" name="tf_q2" value="3" required><span></span></label>
+      <label><input type="radio" name="tf_q2" value="2"><span></span></label>
+      <label><input type="radio" name="tf_q2" value="1"><span></span></label>
+      <label><input type="radio" name="tf_q2" value="0"><span></span></label>
+      <label><input type="radio" name="tf_q2" value="-1"><span></span></label>
+      <label><input type="radio" name="tf_q2" value="-2"><span></span></label>
+      <label><input type="radio" name="tf_q2" value="-3"><span></span></label>
+    </div>
+    <span class="label-right">Compassion</span>
+  </div>
+</div>
+
+<div class="question">
+  <p>9. Is it more important to be truthful or tactful?</p>
+  <div class="scale">
+    <span class="label-left">Truthful</span>
+    <div class="scale-options">
+      <label><input type="radio" name="tf_q3" value="3" required><span></span></label>
+      <label><input type="radio" name="tf_q3" value="2"><span></span></label>
+      <label><input type="radio" name="tf_q3" value="1"><span></span></label>
+      <label><input type="radio" name="tf_q3" value="0"><span></span></label>
+      <label><input type="radio" name="tf_q3" value="-1"><span></span></label>
+      <label><input type="radio" name="tf_q3" value="-2"><span></span></label>
+      <label><input type="radio" name="tf_q3" value="-3"><span></span></label>
+    </div>
+    <span class="label-right">Tactful</span>
+  </div>
+</div>
+
+<!-- JP Dimension -->
+<div class="question">
+  <p>10. Do you prefer a planned schedule or go with the flow?</p>
+  <div class="scale">
+    <span class="label-left">Planned schedule</span>
+    <div class="scale-options">
+      <label><input type="radio" name="jp_q1" value="3" required><span></span></label>
+      <label><input type="radio" name="jp_q1" value="2"><span></span></label>
+      <label><input type="radio" name="jp_q1" value="1"><span></span></label>
+      <label><input type="radio" name="jp_q1" value="0"><span></span></label>
+      <label><input type="radio" name="jp_q1" value="-1"><span></span></label>
+      <label><input type="radio" name="jp_q1" value="-2"><span></span></label>
+      <label><input type="radio" name="jp_q1" value="-3"><span></span></label>
+    </div>
+    <span class="label-right">Go with the flow</span>
+  </div>
+</div>
+
+<div class="question">
+  <p>11. Do you like to finish tasks early or keep things open-ended?</p>
+  <div class="scale">
+    <span class="label-left">Finish early</span>
+    <div class="scale-options">
+      <label><input type="radio" name="jp_q2" value="3" required><span></span></label>
+      <label><input type="radio" name="jp_q2" value="2"><span></span></label>
+      <label><input type="radio" name="jp_q2" value="1"><span></span></label>
+      <label><input type="radio" name="jp_q2" value="0"><span></span></label>
+      <label><input type="radio" name="jp_q2" value="-1"><span></span></label>
+      <label><input type="radio" name="jp_q2" value="-2"><span></span></label>
+      <label><input type="radio" name="jp_q2" value="-3"><span></span></label>
+    </div>
+    <span class="label-right">Open-ended</span>
+  </div>
+</div>
+
+<div class="question">
+  <p>12. Do you prefer structure or flexibility in your daily life?</p>
+  <div class="scale">
+    <span class="label-left">Structure</span>
+    <div class="scale-options">
+      <label><input type="radio" name="jp_q3" value="3" required><span></span></label>
+      <label><input type="radio" name="jp_q3" value="2"><span></span></label>
+      <label><input type="radio" name="jp_q3" value="1"><span></span></label>
+      <label><input type="radio" name="jp_q3" value="0"><span></span></label>
+      <label><input type="radio" name="jp_q3" value="-1"><span></span></label>
+      <label><input type="radio" name="jp_q3" value="-2"><span></span></label>
+      <label><input type="radio" name="jp_q3" value="-3"><span></span></label>
+    </div>
+    <span class="label-right">Flexibility</span>
+  </div>
+</div>
+
+<button type="submit">See your personality type</button>
+</form>
+
+{% endblock %}

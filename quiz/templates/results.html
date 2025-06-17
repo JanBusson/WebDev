@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Personality Result</title>
+    <style>
+        body {
+            font-family: 'Palanquin', sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .result-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="result-box">
+    <h1>Your MBTI Type is:</h1>
+    <h2>{{ mbti_type }}</h2>
+</div>
+
+{% if information %}
+  <h2>{{ information.summary }}</h2>
+  <p><strong>You are </strong> {{ information.ei }}</p>
+  <p><strong>You are </strong> {{ information.sn }}</p>
+  <p><strong>You are more in tune with </strong> {{ information.tf }}</p>
+  <p><strong>You might be rather </strong> {{ information.jp }}</p>
+  <p><strong>Overall Summary of your Personality:</strong> {{ information.sum }}</p>
+{% else %}
+  <p>We don't have a description yet for this personality type.</p>
+{% endif %}
+</body>
+</html>
