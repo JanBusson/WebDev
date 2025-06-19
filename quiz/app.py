@@ -4,7 +4,7 @@ import sqlite3
 app = Flask(__name__)
 app.secret_key = 'supersecretkey' #gehört zum Code der KI
 
-# Information for each personality type
+# Information foür jeden ptype
 information = {
     "INTJ": {
         "summary": "The Architect: Imaginative and strategic thinkers with a plan for everything.",
@@ -136,7 +136,7 @@ information = {
     }
 }
 
-# DB connection helper
+
 def get_db_connection():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
@@ -156,7 +156,7 @@ def create_user():
     user_id = cursor.lastrowid
     conn.commit()
     conn.close()
-    session['user_id'] = user_id  # Store in session
+    session['user_id'] = user_id 
     return redirect(url_for('quiz'))
 
 @app.route('/quiz')
@@ -165,13 +165,13 @@ def quiz():
 
 @app.route('/results', methods=['POST'])
 def results():
-    # Get scores from form
+    #zählen
     vector_ei = sum([int(request.form[f'ei_q{i}']) for i in range(1, 4)])
     vector_sn = sum([int(request.form[f'sn_q{i}']) for i in range(1, 4)])
     vector_tf = sum([int(request.form[f'tf_q{i}']) for i in range(1, 4)])
     vector_jp = sum([int(request.form[f'jp_q{i}']) for i in range(1, 4)])
 
-    # Calculate MBTI
+    #MBTI berechnen
     ei = 'E' if vector_ei >= 0 else 'I'
     sn = 'S' if vector_sn >= 0 else 'N'
     tf = 'T' if vector_tf >= 0 else 'F'
@@ -183,8 +183,8 @@ def results():
     cursor = conn.cursor()
     user_id = session.get('user_id')
 
-    # Insert dummy user for now (later you can collect username)
-    if user_id:  # Ensure a user exists
+    #wenn user existiert
+    if user_id:  
         cursor.execute("""
             INSERT INTO personality_results (user_id, vector_ei, vector_sn, vector_tf, vector_jp, mbti_type)
             VALUES (?, ?, ?, ?, ?, ?)
